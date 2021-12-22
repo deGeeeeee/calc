@@ -29,6 +29,9 @@ public class Calc {
             }
         }
 
+        createFile("primeNumbers");
+        writeArrayToFile("primeNumbers", primes);
+
     }
 
     public static ArrayList<Integer> addPrimefactors(int num) {
@@ -117,17 +120,6 @@ public class Calc {
     }
 
 
-    public static Double calcSineIntegral(Double steps, Double a, Double b) {
-        Double result = 0.0;
-        Double stepSize = (b - a) / steps;
-
-
-        for (int i = 0; i <= steps; i++) {
-            result += (a + stepSize * i) * stepSize;
-        }
-
-        return result;
-    }
 
 
     public static void writeTreeMapToFile(String fileName, TreeMap<Integer, Integer> tree) {
@@ -152,6 +144,25 @@ public class Calc {
             e.printStackTrace();
         }
     }
+
+    public static void writeArrayToFile(String fileName, ArrayList<Integer> array) {
+
+        try {
+            clearTheFile(fileName);
+            FileWriter myWriter = new FileWriter(fileName);
+            for (int i = 0; i < array.size(); i++) {
+                Integer output = array.get(i);
+                myWriter.write(output+"\n");
+            }
+
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
     public static ArrayList<Integer> readArrayFromFile(String fileName) {
         try {
             Scanner s = new Scanner(new File(fileName));
